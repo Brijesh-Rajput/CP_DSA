@@ -1,0 +1,33 @@
+//https://codeforces.com/problemset/problem/1475/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+
+void solve(ll n){
+ 	if((n&(n-1))==0) cout<<"NO"<<endl;
+ 	else cout<<"YES"<<endl;
+ 	/*
+ 	while(n%2==0)
+ 	    n/=2;
+ 	if(n>1) cout<<"YES"<<endl;
+ 	else cout<<"NO"<<endl;
+ 	*/
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+	freopen("Input.txt","r",stdin); 
+	freopen("Output.txt","w",stdout);
+#endif
+
+	ll testcases=1;
+	cin>>testcases;
+	
+	while(testcases--){
+		ll n;
+		cin>>n;
+		solve(n);
+	}
+
+}
