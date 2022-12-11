@@ -1,0 +1,22 @@
+https://codeforces.com/group/MWSDmqGsZm/contest/219158/problem/J
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(int A,int B){
+	if(A%B==0 || B%A==0)
+		cout<<"Multiples";
+	else cout<<"No Multiples";
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+	freopen("Input.txt","r",stdin); 
+	freopen("Output.txt","w",stdout);
+#endif
+
+	int A,B;
+	cin>>A>>B;	
+	solve(A,B);
+
+}
