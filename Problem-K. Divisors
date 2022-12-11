@@ -1,0 +1,23 @@
+//https://codeforces.com/group/MWSDmqGsZm/contest/219432/problem/K
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(int number){
+	//TC=O(n)
+	for (int i = 1; i <=number; ++i)
+		if(number%i==0) cout<<i<<endl;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+	freopen("Input.txt","r",stdin); 
+	freopen("Output.txt","w",stdout);
+#endif
+
+	int number;
+	cin>>number;
+
+	solve(number);
+
+}
