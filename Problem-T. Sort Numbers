@@ -1,0 +1,34 @@
+//https://codeforces.com/group/MWSDmqGsZm/contest/219158/problem/T
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(int A,int B,int C){
+
+	//TC=O(factorial of total given number
+	if(A<B){
+		if(B<C) cout<<A<<endl<<B<<endl<<C<<endl;
+		else if(C<A) cout<<C<<endl<<A<<endl<<B<<endl;
+		else cout<<A<<endl<<C<<endl<<B<<endl;
+	}else if(B<A){
+		if(A<C) cout<<B<<endl<<A<<endl<<C<<endl;
+		else if(C<B) cout<<C<<endl<<B<<endl<<A<<endl;
+		else cout<<B<<endl<<C<<endl<<A<<endl;
+	}
+
+	cout<<endl;
+	cout<<A<<endl<<B<<endl<<C;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+	freopen("Input.txt","r",stdin); 
+	freopen("Output.txt","w",stdout);
+#endif
+
+	int A,B,C;
+	cin>>A>>B>>C;
+
+	solve(A,B,C);
+
+}
