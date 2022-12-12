@@ -1,0 +1,30 @@
+//https://codeforces.com/group/c3FDl9EUi9/contest/262795/problem/B
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(string s){
+
+	map<char,int> m;
+	//TC=O(n)
+	for(auto it=s.begin(); it!=s.end(); it++)
+		if(m[*it]>=1) m[*it]+=1;  //That means that character is already present   
+		else m[*it]=1; 
+
+	//TC=O(n)
+	for(auto it=m.begin(); it!=m.end(); it++)
+		cout<<it->first<<" "<<it->second<<endl;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+	freopen("Input.txt","r",stdin); 
+	freopen("Output.txt","w",stdout);
+#endif
+
+	string s;
+	cin>>s;
+
+	solve(s);
+
+}
