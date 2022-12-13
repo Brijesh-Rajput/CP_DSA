@@ -1,0 +1,37 @@
+//https://codeforces.com/problemset/problem/734/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+	freopen("Input.txt","r",stdin); 
+	freopen("Output.txt","w",stdout);
+#endif
+
+	int n;
+	cin>>n;
+
+	string s;
+	cin>>s;
+
+	int Anton_won = count(s.begin(),s.end(),'A');  //O(n)
+	if(Anton_won > s.length()-Anton_won) cout<<"Anton";
+	else if(Anton_won < s.length()-Anton_won) cout<<"Danik";
+	else cout<<"Friendship";
+
+	// int Anton_won_games_count=0;
+	// for(int i=0; i<s.length(); i++)
+	// 	if(s[i]=='A') Anton_won_games_count++;
+
+	// if(Anton_won_games_count > s.length()-Anton_won_games_count)
+	// 	cout<<"Anton";
+	// else if(Anton_won_games_count < s.length() - Anton_won_games_count)
+	// 	cout<<"Danik";
+	// else cout<<"Friendship";
+
+}
