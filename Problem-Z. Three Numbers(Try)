@@ -32,5 +32,4 @@ int main(){
 				if(x+y+z==s) count++;
 	cout<<count;
 	*/
-
 }
