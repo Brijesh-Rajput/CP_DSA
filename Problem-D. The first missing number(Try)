@@ -1,0 +1,35 @@
+//https://codeforces.com/group/c3FDl9EUi9/contest/262795/problem/D
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+	freopen("Input.txt","r",stdin); 
+	freopen("Output.txt","w",stdout);
+#endif
+
+	int n,m;
+	cin>>n>>m;
+
+	//if i will create hashmap of m then total TC=O(2*m)=O(2*10^5). for that i have to create hashmap of m 
+	//then traverse to the array a to size n and increment the frequency if found, in hashmap --> takes TC=O(n)
+	//As we  know that, if hashmap doesn't contain key then it will return 0;
+
+	map<int,int> mp;
+	//TC=O(n)
+	vector<int> vec(n); //max.m value can be 2*m
+	for(int i=0;i<n;i++){
+		cin>>vec[i];
+		mp[vec[i]]=1;
+	}
+
+	//TC=O(2*m)
+	for(int i=-m;i<=m;i++)
+		if(mp[i]==0){ cout<<i; break; }
+
+}
