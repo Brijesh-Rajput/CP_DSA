@@ -1,0 +1,38 @@
+//https://codeforces.com/group/MWSDmqGsZm/contest/219432/problem/C
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    int n;
+    cin>>n;
+
+    vector<int> vec(n);
+    for(int i=0;i<n;i++)
+        cin>>vec[i];
+
+    int even_count=0,positive_count=0,zeros_count=0;
+    // TC=O(n)
+    for(int i=0;i<n;i++){
+        if(!(vec[i]&1)) even_count++; //can it detect both positive and negative number ? Ans:=No 
+        if(vec[i]>0) positive_count++; //Note:- 0 is neither  positove nor negative. Therefore, we have to store the count of zeros.
+        else if(vec[i]==0) zeros_count++;
+    }
+
+    // cout<<(-3&1)<<" ";
+
+    cout<<"Even: "<<even_count<<endl;
+    cout<<"Odd: "<<n-even_count<<endl;
+    cout<<"Positive: "<<positive_count<<endl;
+    cout<<"Negative: "<<n-positive_count-zeros_count;
+    
+}
