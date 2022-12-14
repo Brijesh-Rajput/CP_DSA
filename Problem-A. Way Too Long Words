@@ -1,0 +1,28 @@
+//https://codeforces.com/problemset/problem/71/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    int n;
+    cin>>n;
+    while(n--){
+        string word;
+        cin>>word;
+        if(word.length()<=10) cout<<word<<endl;
+        else{
+            word.replace(word.begin()+1,word.end()-1,to_string(word.length()-2));
+            cout<<word<<endl;
+        }
+    }  
+
+}
