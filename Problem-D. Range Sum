@@ -1,0 +1,27 @@
+//https://codeforces.com/group/MWSDmqGsZm/contest/326907/problem/D
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    int testcases=1;
+    cin>>testcases;
+    while(testcases--){
+        int L,R;
+        cin>>L>>R; //L can be greater or lesser than R, so we have to check first 
+        if(L>R) swap(L,R);
+        ll answer=1ll*((R-L+1)*(2*L+(R-L)*1ll)/2); //we have used Arithmetic Progression formula as range follow A.p. series 
+        // ll answer=1ll*((R-L+1)*(2*L+(R-L)*1)/2); --> it gives me wrong answer why ?
+        cout<<answer<<endl;
+    }
+
+}
