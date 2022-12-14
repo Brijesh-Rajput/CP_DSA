@@ -1,0 +1,22 @@
+//https://codeforces.com/problemset/problem/4/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    int w;
+    cin>>w;
+
+    if(w&1 || w==2) cout<<"NO"; //b'coz we can't divide the 2 kilos watermelon into two parts where each part should be an even number
+    else cout<<"YES";
+
+}
