@@ -1,0 +1,28 @@
+//https://codeforces.com/problemset/problem/158/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    int n,k;
+    cin>>n>>k;
+
+    vector<int> vec(n);
+    for(int i=0;i<n;i++)
+        cin>>vec[i];
+
+    int count=0;
+    for(auto x: vec)
+        if(x>=vec[k-1] && x>0) count++; 
+    cout<<count;
+
+}
