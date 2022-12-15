@@ -1,0 +1,32 @@
+//https://codeforces.com/problemset/problem/318/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+    ll n,k;
+    cin>>n>>k;
+
+    ll temp = ceil(n/2.0);  //data type should be long. Not int 
+    //NOTE:----> ceil(n/2)==n/2
+    cout<<temp;
+    if(k>temp) cout<<2*(k-temp);
+    else cout<<2*k-1;
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
