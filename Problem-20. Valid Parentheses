@@ -1,0 +1,14 @@
+//https://leetcode.com/problems/valid-parentheses/
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> expression;  //we can also give some numbers to this (){}[]
+        //TC=O(n)
+        for(auto x: s)
+            if(!expression.empty() && ((expression.top()=='(' && x==')') || (expression.top()=='{' && x=='}') || (expression.top()=='[' && x==']') ))
+                expression.pop();
+            else expression.push(x);
+        if(expression.empty()) return 1;
+        return 0;      
+    }
+};
