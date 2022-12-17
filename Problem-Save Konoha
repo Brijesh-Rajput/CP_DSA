@@ -1,0 +1,47 @@
+//https://www.codechef.com/LRNDSA03/problems/SAVKONO?tab=statement
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+    int n,z;
+    cin>>n>>z;
+
+    //vector<int> vec(n);
+    //we can use, priority Queue or Multi-set(for duplicate values)  --> which has less TC from both of these ?
+    priority_queue<int> pq;
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        pq.push(x);
+    }
+
+    int count=0; 
+    //TC=?
+    while(z>0 && pq.top()!=0){  //if array is 1,1,2,2 and Z=25
+        int y=pq.top();
+        pq.pop();
+        z-=y;
+        pq.push(y/2);
+        count++;
+    }
+    if(z>0) cout<<"Evacuate"<<endl;
+    else cout<<count<<endl;
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
