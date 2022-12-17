@@ -1,0 +1,60 @@
+//https://codeforces.com/group/MWSDmqGsZm/contest/219774/problem/R
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+    int n;
+    cin>>n;
+
+    //This will take O(n^2) --> Therefore, we will use Hashmap to reduced the TC upto O(n)
+    /*
+    vector<int> A(n);
+    for(auto &x: A)
+        cin>>x;
+
+    vector<in> B(n);
+    for(auto &x: B)
+        cin>>x;
+
+    //searching each element of Array B in Array A. Takes TC=O(n^2)
+    */
+
+    //----------> Corner cases:- if element comes more than one time in array A
+    map<int,int> mp;
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        // if(mp[x]==0) mp[x]++;
+        mp[x]++;
+    }
+
+    vector<int> B(n);
+    for(auto &x: B)
+        cin>>x;
+
+    //TC=O(n)
+    for(int i=0;i<n;i++)
+        if(mp[B[i]]==0){
+            cout<<"no"; return;
+        }
+        else mp[B[i]]--;
+    cout<<"yes";
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
