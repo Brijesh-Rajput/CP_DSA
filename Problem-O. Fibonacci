@@ -1,0 +1,46 @@
+//https://codeforces.com/group/MWSDmqGsZm/contest/219774/problem/O
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+/*
+ll fibo(int n){  //SC=O(n-1) TC=O(2^n)
+    //Here, we can use the concept of memorization.(DP)
+    if(n==1 || n==2) return n-1;
+    return fibo(n-1)+fibo(n-2);   
+}
+*/
+const ll n=50; //b'coz here this n<=50 constraints are given. Otherwise, n=1e7 
+ll arr[n+1]={0}; //for 1 based indexing. --> It will help to initialize in less no. of code. ANd we no fibo(1)=0
+//SC=O(n) and TC=O(n)
+ll fibo(int n){
+    if(n!=1 && arr[n]==0){
+        if(n==2){ arr[n]=n-1; return arr[n]; }
+        arr[n] = fibo(n-1) + fibo(n-2);
+        return arr[n];
+    }
+    return arr[n];
+}
+void solve(){
+    int n;
+    cin>>n;
+
+    cout<<fibo(n);
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
