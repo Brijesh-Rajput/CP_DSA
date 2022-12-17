@@ -1,0 +1,39 @@
+//https://codeforces.com/group/MWSDmqGsZm/contest/329103/problem/G
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+    int n;
+    cin>>n;
+
+    vector<int> vec(n);
+    for(auto &x: vec)
+        cin>>x;
+
+    if(n&1){ cout<<"-1"<<endl; return; }
+
+    int even_count=0,odd_count=0;  //instead of creating both variable, we can do with one variable also.
+   //TC=O(n) SC=O(1)
+    for(auto x: vec)
+        if(x&1) odd_count++;
+        else even_count++;
+    cout<<abs(even_count-odd_count)/2<<endl;
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
