@@ -1,0 +1,35 @@
+//https://codeforces.com/problemset/problem/1345/B
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void solve(){
+    ll no_of_cards;
+    cin>>no_of_cards;
+
+    int count=0;
+    //What will be its TC=?
+    while(no_of_cards>1){
+        // cout<<sqrt(24*no_of_cards+1)-1<<" ";
+        ll height=floor((sqrt(24*no_of_cards+1)-1)/6.0);
+        no_of_cards-=height*(3*height+1)/2;
+        count++;
+    }
+    cout<<count<<endl;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
