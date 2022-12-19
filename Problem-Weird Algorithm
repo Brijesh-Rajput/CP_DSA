@@ -1,0 +1,34 @@
+//https://cses.fi/problemset/task/1068/
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+void func(ll n){ //How can we know that, data type should be ll not int ? --> b'coz int overflow comes 
+    cout<<n<<" ";
+    if(n>1){
+        if(n&1) func(3*n+1);
+        else func(n/2);
+    }
+}
+void solve(){
+    ll n;
+    cin>>n;
+
+    func(n);
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
