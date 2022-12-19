@@ -1,0 +1,40 @@
+//https://cses.fi/problemset/task/1083/
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    ll n;  //if int data type taken then it will not work. I Don't know why ?
+    cin>>n;
+
+    vector<int> vec(n-1);
+    for(auto &x: vec)
+        cin>>x;
+
+    ll sum=0; 
+    //TC=O(10^5)  or TC=O(n)
+    for(auto x: vec)
+        sum+=x;
+
+    ll all_sum=n*(n+1)/2;
+
+    cout<<all_sum-sum;
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
