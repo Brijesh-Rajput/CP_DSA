@@ -1,0 +1,36 @@
+//https://codeforces.com/group/MWSDmqGsZm/contest/223339/problem/S
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+using namespace std;
+ll sum(vector<int> vec,int start, int end){ //TC=O(n/2) and SC=O(n/2)
+    if(start>end) return 0;
+    if(start==end) return vec[start];
+    return vec[start]+vec[end]+sum(vec,start+1,end-1);
+}
+void solve(){
+    int n;
+    cin>>n;
+    
+    vector<int> vec(n);
+    for(auto &x: vec)
+        cin>>x;
+    
+    cout<<fixed<<setprecision(6)<<sum(vec,0,n-1)/(float)(n);
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
