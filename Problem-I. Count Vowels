@@ -1,0 +1,47 @@
+//https://codeforces.com/group/MWSDmqGsZm/contest/223339/problem/I
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+
+// vector<char> vowel(10);
+// for(int i=0;i<5;i++){
+//     vowel.push_back('a');
+//     vowel.push_back()
+// }   =============================> If vector DS used then required lots of line of code.
+
+string vowel="aeiouAEIOU"; //instead of vector i have use string data type 
+int count_vowel(string s,int start,int end){ //TC=O(n/2)  and SC=O(n/2)
+    if(start>end) return 0;
+    else if(start==end){
+        if(find(all(vowel),s[start])!=vowel.end())
+            return 1;
+    }
+    int count=0;
+    if(find(all(vowel),s[start])!=vowel.end()) count++;
+    if(find(all(vowel),s[end])!=vowel.end()) count++;
+    return count + count_vowel(s,start+1,end-1);
+}
+void solve(){
+    string s;
+    //as string contains spaces also, therefore we will use getline() function b'coz space is not a delimeter for that.
+    getline(cin,s);
+    cout<<count_vowel(s,0,s.length()-1);
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
