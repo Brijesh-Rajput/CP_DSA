@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/n-th-tribonacci-number/description/
+#include<bits/stdc++.h>
+#define ll long long int
+class Solution {
+    // int n=38;
+    // vector<int> vec(38,0);  ---> But Why Vector Doesn't work ?
+    ll vec[38]={0};
+public:
+    int tribonacci(int n) { //TC=O(n+1)  instead of 3^n  AND SC=O(n+1)
+        if(n>=3 && vec[n]==0){
+            //then we have to find 
+            vec[n] = tribonacci(n-1) + tribonacci(n-2) + tribonacci(n-3);
+            return vec[n];
+        }
+        else if((n>=1 && vec[n]!=0) || n==0) return vec[n];
+        // else if(n==0) return vec[n];
+        else if(n==1){ vec[n]=n; return vec[n]; }
+        else if(n==2){ vec[n]=n-1; return vec[n]; }
+        return -1; //it will never execute
+    }
+};
