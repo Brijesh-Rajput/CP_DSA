@@ -1,0 +1,53 @@
+//https://codeforces.com/problemset/problem/476/B
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve_problem(string s2,int index, vector<int>&ans){ //string &s2 --> I think no need of this here. we don't want to do change in an original string 
+    //TC=O(2^n)  and n<=10 Therefore, TC=O(2^10)=1024 ~ 10^3 < 10^8. ==> Therefore, It will run in 1sec 
+    if(index==s2.size()){
+        int count=0; //Initial Position value 
+        for(auto x: s2)
+            if(x=='+') count++;
+            else count--;
+        ans.push_back(count);
+    }
+    else if(s2[index]=='?'){
+        s2[index]='+';
+        solve_problem(s2,index+1,ans);
+        s2[index]='-';
+        solve_problem(s2,index+1,ans);
+    }
+    else solve_problem(s2,index+1,ans);
+}
+void solve(){
+    string s1,s2;
+    cin>>s1>>s2;
+
+    int original_value=0;
+    for(auto x: s1)
+        if(x=='+') original_value++;
+        else original_value--;
+
+    vector<int> ans;
+    solve_problem(s2,0,ans);
+
+    cout<<fixed<<setprecision(12)<<(float)(count(all(ans),original_value))/ans.size();
+
+}
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
