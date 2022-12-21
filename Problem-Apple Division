@@ -1,0 +1,51 @@
+//https://cses.fi/problemset/result/5146437/
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void func(ll n,ll &min_,int indx,vector<int> &vec,ll sum,ll gp1){ 
+    //TC=O(2^n)  and  SC=O(n)  where,n is the size of the array.
+    if(sum!=0 && n!=indx){
+        ll min1 = abs((sum-vec[indx]) - (gp1 + vec[indx]));
+        ll min2 = abs(sum-gp1);
+        min_=min(min1,min_);
+        min_=min(min2,min_);
+        // cout<<indx<<" "<<vec[indx]<<" "<<sum-vec[indx]<<endl;
+        func(n,min_,indx+1,vec,sum-vec[indx],gp1+vec[indx]);
+        func(n,min_,indx+1,vec,sum,gp1);
+    }
+}
+void solve(){
+    ll n;
+    cin>>n;
+
+    vector<int> vec(n);
+    for(auto &x: vec)
+        cin>>x;
+
+    ll sum=0;
+    for(auto x: vec)
+        sum+=x;
+
+    ll min_= INT_MAX;
+    func(n,min_,0,vec,sum,0);
+    // cout<<"hdvc";
+    cout<<min_;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
