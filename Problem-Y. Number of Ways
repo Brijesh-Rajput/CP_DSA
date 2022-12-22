@@ -1,0 +1,43 @@
+//https://codeforces.com/group/MWSDmqGsZm/contest/223339/problem/Y
+//How can we solve this problem without recursion ? 
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void helper(int s,int e,int &no_of_ways){
+    //SC=O(E) and TC=O(3^E)  and Here,E<=15 ==> SC=O(15) and TC=O(3^15) ~ O(10^7) < O(10^8) ==> Therefore, This approach will give result in less than one minute.
+    //We can also print the all ways which reach us to the E (end Point).
+    if(s>e) return;
+    else if(s==e) no_of_ways++;
+    else{
+        helper(s+1,e,no_of_ways);
+        helper(s+2,e,no_of_ways);
+        helper(s+3,e,no_of_ways);
+    }
+}
+void solve(){
+    int s,e;
+    cin>>s>>e;
+
+    int no_of_ways=0;
+    helper(s,e,no_of_ways);
+
+    cout<<no_of_ways;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
