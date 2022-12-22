@@ -1,0 +1,35 @@
+//https://codeforces.com/group/MWSDmqGsZm/contest/223339/problem/P
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void helper(ll n,int &count){
+    //TC=O(floor(logn base2))  and  SC=O(floor(logn base2))
+    if(n==1) return; //No need to write this condition -> if(n<=1)  ==> Want to know ? Do Dry run with some testcases
+    else{ count++; helper(n/2,count); }
+}
+void solve(){
+    ll n; 
+    cin>>n;
+
+    int count=0; //It will store the no. of time division happen by the divisor 2 ==> Indirectly, It will store floor(logn base2) value
+    helper(n,count);
+    cout<<count;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
