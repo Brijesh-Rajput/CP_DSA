@@ -1,0 +1,39 @@
+//https://codeforces.com/problemset/problem/96/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    string s;
+    cin>>s;
+
+    if(s.size() < 7) { cout<<"NO"; return; }  //---------> Corner case
+
+    int count=1;
+    for(int i=1;i<s.size();i++)
+        if(s[i-1]==s[i]){
+            count++; 
+            if(count==7){ cout<<"YES"; return; }
+        }
+        else count=1;
+
+    cout<<"NO";
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
