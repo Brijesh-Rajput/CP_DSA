@@ -1,0 +1,35 @@
+//https://atcoder.jp/contests/abc258/tasks/abc258_a
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    int n;
+    cin>>n;
+
+    int hr=21+n/60;
+    int minutes=n%60;
+
+    string s=to_string(hr);
+    s.append(1,':'); //how many times you want to repeat ==> thats the 1st argument take 
+    if(minutes>9) s+=to_string(minutes);
+    else { s+=to_string(0); s+=to_string(minutes); }
+    cout<<s;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
