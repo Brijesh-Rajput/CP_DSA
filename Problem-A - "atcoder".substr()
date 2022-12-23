@@ -1,0 +1,32 @@
+//https://atcoder.jp/contests/abc264/tasks/abc264_a
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    string s="atcoder";
+    // int l,r; //NOTE:- can't used this name l b'coz it is already used in macros
+    int left,right;
+    cin>>left>>right; //considering that given input is valid 
+
+    for(int i=left-1;i<right;i++)
+        cout<<s[i];
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
