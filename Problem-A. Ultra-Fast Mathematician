@@ -1,0 +1,35 @@
+//https://codeforces.com/problemset/problem/61/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    string s1,s2;
+    cin>>s1>>s2;
+
+    string ans(s1.size(),0); //Ways to initialize the string ?
+    //TC=O(n) and SC=O(n)
+    for(int i=0;i<s1.size();i++)
+        if(s1[i]==s2[i]) ans[i]='0';
+        else ans[i]='1';
+
+    cout<<ans;
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
