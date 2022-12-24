@@ -1,0 +1,40 @@
+//https://atcoder.jp/contests/abc263/tasks/abc263_a
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    vector<int> vec(5);
+    for(auto &x: vec)
+        cin>>x;
+
+    //we can use frequency array as element size is very small. a,b,c,d,e <= 13
+    set<int> s;
+    for(auto x: vec)
+        s.insert(x);
+
+    if(s.size()!=2){ cout<<"No"; return; }
+    for(auto x: s){
+        int y=count(all(vec),x);
+        if(y!=3 && y!=2){ cout<<"No"; return; }
+    }
+    cout<<"Yes";
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
