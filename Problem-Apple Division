@@ -6,7 +6,7 @@
 using namespace std;
 void func(ll n,ll &min_,int indx,vector<int> &vec,ll sum,ll gp1){ 
     //TC=O(2^n)  and  SC=O(n)  where,n is the size of the array.
-    if(sum!=0 && n!=indx){
+    if(sum!=0 && n!=indx){  //sum will zero only when n reaches to the last index ---> cnf 2nd commit 
         ll min1 = abs((sum-vec[indx]) - (gp1 + vec[indx]));
         ll min2 = abs(sum-gp1);
         min_=min(min1,min_);
