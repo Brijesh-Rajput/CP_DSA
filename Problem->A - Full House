@@ -6,21 +6,33 @@
 using namespace std;
 void solve(){
     vector<int> vec(5);
-    for(auto &x: vec)
-        cin>>x;
-
     //we can use frequency array as element size is very small. a,b,c,d,e <= 13
+    vector<int> frequency(14); //for 1 based indexing. We can also use map data-struture also
+   
+    for(auto &x: vec){
+        cin>>x;
+        frequency[x]++;
+    }
+
+    for(int i=1;i<14;i++){
+        int y=frequency[i];
+        if(y!=0 && y!=3 && y!=2){ cout<<"No"; return; }
+    }
+    cout<<"Yes"; //B'coz it is confirm that there are total 5 elements are presents.
+
+    /*
     set<int> s;
     for(auto x: vec)
         s.insert(x);
 
     if(s.size()!=2){ cout<<"No"; return; }
+    //This below code is required. for testcases :- 1,1,1,1,2 ==> Output:-NO
     for(auto x: s){
         int y=count(all(vec),x);
         if(y!=3 && y!=2){ cout<<"No"; return; }
     }
     cout<<"Yes";
-
+    */
 }
 
 int main(){
