@@ -14,12 +14,13 @@ void solve(){
     int i,j; //to store the location of element 1
     bool found=false;
     //TC=O(n^2) where n=5 --> size of the matrix
+    //TC=O(1) b'coz it's not dependent on the input size
     for(i=1; i<=5; i++){
         for(j=1; j<=5; j++)
             if(vec[i][j]){ found=true; break; } //don't use return keyword instead of break keyword
         if(found) break; //Don't forget this stmt
     }
-    cout<<abs(3-i)+abs(3-j);
+    cout<<abs(3-i)+abs(3-j); //Max value will be 4
 }
 
 int main(){
