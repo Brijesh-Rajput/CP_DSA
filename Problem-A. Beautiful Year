@@ -19,7 +19,7 @@ void solve(){
     int x;
     cin>>x;
 
-    //What will be the TC=?
+    //What will be the TC=4*10^3
     //Bruteforce Approach
     int y=x+1;
     while(y){
