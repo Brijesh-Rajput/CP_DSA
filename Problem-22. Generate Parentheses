@@ -1,41 +1,23 @@
 //https://leetcode.com/problems/generate-parentheses/
 class Solution {
 public:
-    void helper(string s,set<string> &temp){
-        //TC=O(string size + 1) = 2*n+1 where 2*n is the size of string. n is no. of pairs
-        string substring="()";
-        for(int i=0;i<=s.size();i++){
-            string temp_string=s;
-            temp_string.insert(i,substring);
-            temp.insert(temp_string);
+    void helper(int sum_1_open,int sum_2_closed,string s,int n_pairs,vector<string> &ans){
+        //TC=O(2^(2*n))  and   SC=O(n)
+        if(sum_1_open==0 && sum_2_closed==0){ //s.size()==2*n_pairs) --> wrong condition 
+            ans.push_back(s);
+            return;
         }
-    }
-    set<string> generate_paranthesis(int n){
-        //Using Recursion ==> using solution of n-1 pairs 
-        //TC = ?????
-        //SC=O(n)
-        if(n==1){
-            set<string> s;
-            string s1="()";
-            s.insert(s1);
-            return s;
-        }
-
-        set<string> s =generate_paranthesis(n-1);
-        set<string> temp;
-        //TC=O(2*n+1 * solution of n-1 pairs)
-        for(auto x: s){
-            helper(x,temp);
-        }
-        return temp;
+        if(sum_1_open<0 || sum_2_closed<0 || (sum_2_closed-sum_1_open)<0 ) return;  //----> Imp 
+        s.push_back('(');
+        helper(sum_1_open-1,sum_2_closed,s,n_pairs,ans);
+        s.pop_back();
+        s.push_back(')');
+        helper(sum_1_open,sum_2_closed-1,s,n_pairs,ans);
 
     }
     vector<string> generateParenthesis(int n){
         vector<string> ans;
-        set<string> s = generate_paranthesis(n);
-        for(auto x: s){
-            ans.push_back(x);
-        }
+        helper(n,n,"",n,ans);
         return ans;
     }
 };
@@ -47,41 +29,31 @@ public:
 #define l long int
 #define all(x) x.begin(),x.end()
 using namespace std;
-void helper(string s,set<string> &temp){
-    //TC=O(string size + 1) = 2*n+1 where 2*n is the size of string. n is no. of pairs
-    string substring="()";
-    for(int i=0;i<=s.size();i++){
-        string temp_string=s;
-        temp_string.insert(i,substring);
-        temp.insert(temp_string);
+void helper(int sum_1_open,int sum_2_closed,string s,int n_pairs,vector<string> &ans){
+    //TC=O(2^(2*n))  and   SC=O(n)
+    if(sum_1_open==0 && sum_2_closed==0){ //s.size()==2*n_pairs) --> wrong condition 
+        ans.push_back(s);
+        return;
     }
+    if(sum_1_open<0 || sum_2_closed<0 || (sum_2_closed-sum_1_open)<0 ) return;  //----> Imp 
+    s.push_back('(');
+    helper(sum_1_open-1,sum_2_closed,s,n_pairs,ans);
+    s.pop_back();  //NOTE:-   Don't do sum_1_open+1 here
+    s.push_back(')');
+    helper(sum_1_open,sum_2_closed-1,s,n_pairs,ans);
+
 }
-set<string> generate_paranthesis(int n){
-    //Using Recursion ==> using solution of n-1 pairs 
-    //TC = ?????
-    //SC=O(n)
-    if(n==1){
-        set<string> s;
-        string s1="()";
-        s.insert(s1);
-        return s;
-    }
-
-    set<string> s =generate_paranthesis(n-1);
-    set<string> temp;
-    //TC=O(2*n+1 * solution of n-1 pairs)
-    for(auto x: s){
-        helper(x,temp);
-    }
-    return temp;
-
+vector<string> generateParenthesis(int n){
+    vector<string> ans;
+    helper(n,n,"",n,ans);
+    return ans;
 }
 void solve(){
     int n;
     cin>>n;
 
-    set<string> s = generate_paranthesis(n);
-    for(auto x: s)
+    vector<string> ans=generateParenthesis(n);
+    for(auto x: ans)
         cout<<x<<endl;
     cout<<endl;
 }
