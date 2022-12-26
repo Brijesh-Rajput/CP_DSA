@@ -1,0 +1,47 @@
+//https://codeforces.com/problemset/problem/271/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+bool check(int y){ //TC=O(total no. of digits of y)
+    //SC=O(1)
+    vector<int> digit_frequency(10);
+    while(y){ 
+        if(digit_frequency[y%10] != 0)
+            return false; 
+        digit_frequency[y%10]++;
+        y/=10;
+    }
+    return true;
+}
+void solve(){
+    int x;
+    cin>>x;
+
+    //What will be the TC=?
+    //Bruteforce Approach
+    int y=x+1;
+    while(y){
+        //check whether y has distinct digit or not 
+        if(check(y)) break;
+        y++;
+    }
+    cout<<y;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
