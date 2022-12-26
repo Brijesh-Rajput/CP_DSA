@@ -1,0 +1,76 @@
+//https://leetcode.com/problems/generate-parentheses/
+class Solution {
+public:
+    void helper(int sum_1_open,int sum_2_closed,string s,int n_pairs,vector<string> &ans){
+        //TC=O(2^(2*n))  and   SC=O(n)
+        if(sum_1_open==0 && sum_2_closed==0){ //s.size()==2*n_pairs) --> wrong condition 
+            ans.push_back(s);
+            return;
+        }
+        if(sum_1_open<0 || sum_2_closed<0 || (sum_2_closed-sum_1_open)<0 ) return;  //----> Imp 
+        s.push_back('(');
+        helper(sum_1_open-1,sum_2_closed,s,n_pairs,ans);
+        s.pop_back();
+        s.push_back(')');
+        helper(sum_1_open,sum_2_closed-1,s,n_pairs,ans);
+
+    }
+    vector<string> generateParenthesis(int n){
+        vector<string> ans;
+        helper(n,n,"",n,ans);
+        return ans;
+    }
+};
+
+//==============================================================Full Code =================================
+/*
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void helper(int sum_1_open,int sum_2_closed,string s,int n_pairs,vector<string> &ans){
+    //TC=O(2^(2*n))  and   SC=O(n)
+    if(sum_1_open==0 && sum_2_closed==0){ //s.size()==2*n_pairs) --> wrong condition 
+        ans.push_back(s);
+        return;
+    }
+    if(sum_1_open<0 || sum_2_closed<0 || (sum_2_closed-sum_1_open)<0 ) return;  //----> Imp 
+    s.push_back('(');
+    helper(sum_1_open-1,sum_2_closed,s,n_pairs,ans);
+    s.pop_back();
+    s.push_back(')');
+    helper(sum_1_open,sum_2_closed-1,s,n_pairs,ans);
+
+}
+vector<string> generateParenthesis(int n){
+    vector<string> ans;
+    helper(n,n,"",n,ans);
+    return ans;
+}
+void solve(){
+    int n;
+    cin>>n;
+
+    vector<string> ans=generateParenthesis(n);
+    for(auto x: ans)
+        cout<<x<<endl;
+    cout<<endl;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
+*/
