@@ -1,0 +1,39 @@
+//https://codeforces.com/problemset/problem/263/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    vector<vector<int>> vec(6,vector<int>(6,0)); //for 1-based indexing 
+    for(int i=1; i<=5; i++)
+        for(int j=1; j<=5; j++)
+            cin>>vec[i][j];
+    // cout<<"Hello";
+
+    int i,j; //to store the location of element 1
+    bool found=false;
+    //TC=O(n^2) where n=5 --> size of the matrix
+    for(i=1; i<=5; i++){
+        for(j=1; j<=5; j++)
+            if(vec[i][j]){ found=true; break; } //don't use return keyword instead of break keyword
+        if(found) break; //Don't forget this stmt
+    }
+    cout<<abs(3-i)+abs(3-j);
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
