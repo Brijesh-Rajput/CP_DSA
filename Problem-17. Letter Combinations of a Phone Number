@@ -4,6 +4,7 @@ public:
     map<char,string> mp;//Globally declared so it can be used directly
 
     void helper(string &digits,int indx,vector<string> &ans,string s){
+        //TC=O(3^3 * 5^2) or O(3^n)  all permutation   and   SC=O(n)
         // cout<<indx<<" ";
         if(digits.size()==0) return; //Corner cases:- b'coz vector of string should not contain the empty string.
         if(indx==digits.size()){
