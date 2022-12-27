@@ -1,62 +1,4 @@
 //https://leetcode.com/problems/n-queens/
-class Solution {
-public:
-        bool check(vector<string> chess_board,int row,int column){
-        //TC=?????
-        //
-
-        int n = chess_board[0].size();
-
-        //to check upper column
-        for(int i=row; i>=0; i--) //if i is initialize with this value row-1 then we have to write return stmt when row==0  
-            if(chess_board[i][column]=='Q') return false;
-
-        //to check upper and left side 
-        for(int i=row, j=column; i>=0 && j>=0 ;i--,j--)
-            if(chess_board[i][j]=='Q') return false;
-
-        //to check upper and right side 
-        for(int i=row,j=column; i>=0 && j<n; i--,j++)
-            if(chess_board[i][j]=='Q') return false;
-
-        return true;
-    }
-    void n_queenProblem(int n,int row,vector<vector<string>> &ans, vector<string> chess_board){ //as chess_board is not a reference variable. so data will copy. Therefore,Here we Don't want use pop_back() function
-        //TC=O(n^(n*n) * checkFunction TC) and SC=O(n)  --> for finding all possible answer;
-        if(row==n){                                                         //we can also use chess_board as a reference variable 
-            ans.push_back(chess_board);
-            return;
-        }
-        for(int column=0; column<n; column++){
-            if(check(chess_board,row,column)){
-                chess_board[row][column]='Q';
-                n_queenProblem(n,row+1,ans,chess_board);
-                chess_board[row][column]='.'; //It's Like a Backtracking
-            }
-        }
-
-    }
-    vector<vector<string>> solveNQueens(int n){
-        vector<vector<string>> ans;
-        vector<string> chess_board(n);
-
-        //creation of string for empty chess board 
-        //TC=O(n)
-        string empty_string;
-        for(int i=0; i<n; i++)
-            empty_string.push_back('.');
-
-        //TC=O(n)
-        for(int i=0; i<n; i++) 
-            chess_board[i]=empty_string;
-
-        n_queenProblem(n,0,ans,chess_board);
-        return ans;
-    }
-};
-
-//=================================================Full code ====================================
-/*
 #include<bits/stdc++.h>
 #define ll long long int
 #define l long int
@@ -73,7 +15,7 @@ bool check(vector<string> chess_board,int row,int column){
     for(int i=row; i>=0; i--) //if i is initialize with this value row-1 then we have to write return stmt when row==0  
         if(chess_board[i][column]=='Q') return false;
 
-    //to check upper and left side 
+    //to check upper and left side  
     for(int i=row, j=column; i>=0 && j>=0 ;i--,j--)
         if(chess_board[i][j]=='Q') return false;
 
@@ -83,11 +25,11 @@ bool check(vector<string> chess_board,int row,int column){
 
     return true;
 }
-void n_queenProblem(int n,int row,vector<vector<string>> &ans, vector<string> chess_board){ //as chess_board is not a reference variable. so data will copy. Therefore,Here we Don't want use pop_back() function
+bool n_queenProblem(int n,int row,vector<vector<string>> &ans, vector<string> chess_board){ //as chess_board is not a reference variable. so data will copy. Therefore,Here we Don't want use pop_back() function
     //TC=O(n^(n*n) * checkFunction TC) and SC=O(n)  --> for finding all possible answer;
     if(row==n){                                                         //we can also use chess_board as a reference variable 
         ans.push_back(chess_board);
-        return;
+        return true;
     }
     for(int column=0; column<n; column++){
         if(check(chess_board,row,column)){
@@ -97,6 +39,9 @@ void n_queenProblem(int n,int row,vector<vector<string>> &ans, vector<string> ch
         }
     }
 
+    //as we know that w ehav eto find all possible solution
+    //Whether n_queenProblem return true or false we have to traverse all the direction. So Here, No use of bool type 
+    return false; 
 }
 vector<vector<string>> solveNQueens(int n){
     vector<vector<string>> ans;
@@ -144,4 +89,3 @@ int main(){
     }
 
 }
-*/
