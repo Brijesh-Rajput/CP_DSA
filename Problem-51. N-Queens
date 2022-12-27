@@ -34,7 +34,7 @@ bool n_queenProblem(int n,int row,vector<vector<string>> &ans, vector<string> ch
     for(int column=0; column<n; column++){
         if(check(chess_board,row,column)){
             chess_board[row][column]='Q';
-            n_queenProblem(n,row+1,ans,chess_board);
+            if(n_queenProblem(n,row+1,ans,chess_board)) return true; //====== Only this line is change for finding only one solution =============
             chess_board[row][column]='.'; //It's Like a Backtracking
         }
     }
