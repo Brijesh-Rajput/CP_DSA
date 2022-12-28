@@ -1,0 +1,43 @@
+//https://codeforces.com/problemset/problem/1535/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    vector<int> vec(4);
+    for(auto &x: vec)
+        cin>>x;
+
+    int actual_sum=0,sum=0;
+
+    //as we know that all values are distinct
+    if(vec[0]>vec[1]) sum+=vec[0];
+    else sum+=vec[1];
+    if(vec[2]>vec[3]) sum+=vec[2];
+    else sum+=vec[3];
+
+    //TC=O(nlogn) where n=4  ==> total operations 8 
+    sort(all(vec));
+    actual_sum+=vec[2];
+    actual_sum+=vec[3];
+
+    if(actual_sum==sum) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
