@@ -1,0 +1,39 @@
+//https://codeforces.com/problemset/problem/758/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    int n; cin>>n;
+    vector<int> vec(n);
+    for(auto &x: vec)
+        cin>>x;
+
+    //To find the max value we can do in O(n) instead of using sorting(O(nlogn))
+    int max_value = *(max_element(all(vec))); //Don't use inbuilt max function 
+    // cout<<max_value;
+
+    //To find min value we will use min() function. Learn min(),max(),max_element
+
+    int sum = 0; //arr={0,0,...,1e6}  max_sum=100*1e6=1e8; 
+    for(int i=0;i<n;i++)
+        sum+=max_value-vec[i];
+    cout<<sum;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
