@@ -1,0 +1,100 @@
+//https://leetcode.com/problems/permutations-ii/
+class Solution {
+public:
+    void permuteUnique(vector<int> &nums,set<vector<int>> &ans,int indx,vector<int> vec,int n){
+        SC=O(n) and TC=??
+        if(indx==n){ ans.insert(vec); return; }
+        for(auto it=nums.begin(); it<nums.end(); it++){
+            int x=*it;
+            vec.push_back(x);
+            nums.erase(it);
+            permuteUnique(nums,ans,indx+1,vec,n);
+            nums.insert(it,x);
+            vec.pop_back(); //BAcktrack
+        }
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        set<vector<int>> ans;
+
+        vector<int> vec;
+        permuteUnique(nums,ans,0,vec,nums.size());
+        
+        //Convert into vector<vector<int>>
+        vector<vector<int>> answer;
+        for(auto x: ans){
+            vector<int> temp;
+            for(auto y: x)
+                temp.push_back(y);
+            answer.push_back(temp);
+        }
+        return answer;
+    }
+};
+
+//======================================================Full Code================================================================================
+/*
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void permuteUnique(vector<int> &nums,set<vector<int>> &ans,int indx,vector<int> vec,int n){
+    //SC=O(n)  and TC=???   /////Not this -> O(n!)~O(n^n)  ==> n*(n-1)*(n-2)...1
+    if(indx==n){ ans.insert(vec); return; }  
+    for(auto it=nums.begin(); it<nums.end(); it++){
+        int x=*it;
+        vec.push_back(x);
+        nums.erase(it); //erase func. TC=O(n)  for shifting oprnts
+        permuteUnique(nums,ans,indx+1,vec,n);
+        nums.insert(it,x); //insert func. TC=O(n) for shifting oprtns
+        vec.pop_back(); //BAcktrack
+    }
+
+}
+vector<vector<int>> permuteUnique(vector<int>& nums) {
+    set<vector<int>> ans;
+
+    vector<int> vec;
+    permuteUnique(nums,ans,0,vec,nums.size());
+    
+    //Convert into vector<vector<int>>
+    vector<vector<int>> answer;
+    for(auto x: ans){
+        vector<int> temp;
+        for(auto y: x)
+            temp.push_back(y);
+        answer.push_back(temp);
+    }
+    return answer;
+}
+void solve(){
+    int n; cin>>n;
+    vector<int> vec(n);
+    for(auto &x: vec)
+        cin>>x;
+
+    vector<vector<int>> ans = permuteUnique(vec);
+    for(auto x: ans){
+        for(auto y: x)
+            cout<<y<<" ";
+        cout<<endl;
+    }
+    cout<<endl;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
+*/
