@@ -1,0 +1,139 @@
+//https://cses.fi/problemset/task/1652/
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    //TC=O(n^2 + q)  It's not a Bruteforce Approach 
+    //As we wnat to find the sum of elements of sub matrix, therefore we will use 2-d Prefix sum 
+    //No. fo queries are also more
+
+    //Task is given 2-d matrix is of string not an integer
+    int n,q; cin>>n>>q;
+    vector<string> vec(n); //0-based indexing
+    for(auto &x: vec)
+        cin>>x;
+
+    //TC=O(n^n)
+    //converting vector<string> into vector<vector<int>> so it will be easy to calculate the no. of trees in a rectangle 
+    vector<vector<int>> Trees_forest(n+1,vector<int>(n+1,0)); //1-based indexing    
+    int put;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(vec[i][j]=='*') put=1;
+            else put=0;
+            Trees_forest[i+1][j+1]=put;
+        }
+    }
+
+    //TC=O(n^n)
+    //ceating 2-d prefix sum 
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++)
+            Trees_forest[i][j] += Trees_forest[i-1][j] + Trees_forest[i][j-1] - Trees_forest[i-1][j-1];
+
+    //TC=O(q)
+    while(q--){
+        int y1,x1,y2,x2;
+        cin>>x1>>y1>>x2>>y2;
+
+        //Here, y1<=y2 and x1<=x2
+        int no_of_trees = Trees_forest[x2][y2] - Trees_forest[x1-1][y2] - Trees_forest[x2][y1-1] + Trees_forest[x1-1][y1-1];        
+        cout<<no_of_trees<<endl;
+    }
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
+//==================================Full code--=========================================================
+/*
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    //TC=O(n^2 + q)  It's not a Bruteforce Approach 
+    //As we wnat to find the sum of elements of sub matrix, therefore we will use 2-d Prefix sum 
+    //No. fo queries are also more
+
+    //Task is given 2-d matrix is of string not an integer
+
+    int n,q; cin>>n>>q;
+    vector<string> vec(n); //0-based indexing
+    for(auto &x: vec)
+        cin>>x;
+
+    //TC=O(n^n)
+    //converting vector<string> into vector<vector<int>> so it will be easy to calculate the no. of trees in a rectangle 
+    vector<vector<int>> Trees_forest(n+1,vector<int>(n+1,0)); //1-based indexing    
+    int put;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(vec[i][j]=='*') put=1;
+            else put=0;
+            Trees_forest[i+1][j+1]=put;
+        }
+    }
+
+    // for(auto x: Trees_forest){
+    //     for(auto y: x)
+    //         cout<<y<<" ";
+    //     cout<<endl;
+    // }
+    // cout<<endl;
+
+    //TC=O(n^n)
+    //ceating 2-d prefix sum 
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++)
+            Trees_forest[i][j] += Trees_forest[i-1][j] + Trees_forest[i][j-1] - Trees_forest[i-1][j-1];
+
+    // for(auto x: Trees_forest){
+    //     for(auto y: x)
+    //         cout<<y<<" ";
+    //     cout<<endl;
+    // }
+    // cout<<endl;
+
+    //TC=O(q)
+    while(q--){
+        int y1,x1,y2,x2;
+        cin>>x1>>y1>>x2>>y2;
+
+        //Here, y1<=y2 and x1<=x2
+        int no_of_trees = Trees_forest[x2][y2] - Trees_forest[x1-1][y2] - Trees_forest[x2][y1-1] + Trees_forest[x1-1][y1-1];        
+        cout<<no_of_trees<<endl;
+    }
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
+*/
