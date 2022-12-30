@@ -1,0 +1,58 @@
+//https://www.hackerrank.com/challenges/crush/problem?isFullScreen=true
+long arrayManipulation(int n, vector<vector<int>> queries) {
+   vector<long> vec(n+1);
+    // cout<<queries.size();
+    //for quereise
+    for(int i=0; i<queries.size(); i++){
+        vec[queries[i][0]]+=queries[i][2]; if(queries[i][1]+1<=n) vec[queries[i][1]+1]+=-queries[i][2];
+    }   
+    //prefix sum  --> TC=O(n) 
+    for(int i=1;i<=n;i++)
+        vec[i]+=vec[i-1];
+    return *max_element(vec.begin(),vec.end());
+}
+
+//=================================Full Code -----------------------------------------------------
+/*
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    //Total TC=O(n+m)  It's not a bruteforce approach
+
+    int n,m; cin>>n>>m;
+    //!-based indexing array 
+    vector<ll> vec(n+1); //initial[ly it will contain 0
+    
+    //TC=O(m)
+    while(m--){
+        int a,b,k; cin>>a>>b>>k;
+        vec[a]+=k; if(b+1<=n) vec[b+1]+=-k;
+    }
+
+    //prefix sum  --> TC=O(n) 
+    for(int i=1;i<=n;i++)
+        vec[i]+=vec[i-1];
+
+    //TC=O(n)
+    cout<<*max_element(all(vec));
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
+*/
