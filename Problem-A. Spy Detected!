@@ -1,0 +1,42 @@
+//https://codeforces.com/problemset/problem/1512/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    int n; cin>>n;
+    vector<int> vec(n);
+    for(auto &x: vec)
+        cin>>x;
+
+    //Bruteforce Approach :- TC=O(n) and SC=O(2)
+    //find the unique no. 
+    map<int,int> mp;
+    for(int i=0; i<n; i++)
+        mp[vec[i]]++;
+    int unique_value;
+    for(const auto& temp: mp)
+        if(temp.second==1)
+            unique_value=temp.first;
+
+    //Now find the index of that unique value 
+    for(int i=0; i<n; i++)
+        if(vec[i]==unique_value){ cout<<i+1<<endl; return; }
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
