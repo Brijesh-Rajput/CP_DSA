@@ -10,19 +10,15 @@ void solve(){
     for(auto &x: vec)
         cin>>x;
 
-    //Bruteforce Approach :- TC=O(n) and SC=O(2)
-    //find the unique no. 
-    map<int,int> mp;
-    for(int i=0; i<n; i++)
-        mp[vec[i]]++;
-    int unique_value;
-    for(const auto& temp: mp)
-        if(temp.second==1)
-            unique_value=temp.first;
+    //TC=O(n)
+    int let_unique=vec[0];
+    for(int i=1; i<n; i++)
+        if(i==1 && vec[i]!=let_unique){ //Two possibility, whether at index i or at index 0
+            if(vec[i+1]==vec[i]){ cout<<"1"<<endl; return; } //B'coz 1 based indexing is used
+            else { cout<<i+1<<endl; return; }
+        }
+        else if(vec[i]!=let_unique){ cout<<i+1<<endl; return; }
 
-    //Now find the index of that unique value 
-    for(int i=0; i<n; i++)
-        if(vec[i]==unique_value){ cout<<i+1<<endl; return; }
 }
 
 int main(){
