@@ -1,0 +1,41 @@
+//https://cses.fi/problemset/task/1646/
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){ //Total TC=O(q+n)
+ 
+    int n,q; cin>>n>>q;
+    vector<ll> vec(n+1); //1 based indexing
+    for(int i=1;i<=n;i++)
+        cin>>vec[i];
+ 
+    //TC=O(n) --> prefix sum array 
+    for(int i=1;i<=n;i++)
+        vec[i]+=vec[i-1];  //b'coz of 1-based indexing we don't want to write any condition for 1st element
+    //it's like something finding fibo of n --> fibo[n]=fibo[n-1]+fibo[n-2];
+ 
+    //TC=O(q)
+    while(q--){
+        int a,b; cin>>a>>b;
+        //sum between this a,b (index)inclusive
+        cout<<vec[b]-vec[a-1]<<endl;
+    }
+}
+ 
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+ 
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+ 
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+ 
+}
