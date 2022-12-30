@@ -1,0 +1,35 @@
+//https://codeforces.com/problemset/problem/1374/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){ //Adohac Question
+    int x,y,n; cin>>x>>y>>n;
+
+    //Tc=O(n) --> TLE b'coz TC=O(testcases * algo tc)
+    // for(int i=n; i>=0; i--)
+    //     if(i%x==y){ cout<<i<<endl; return; }
+
+    //TC=O(1)
+    int temp = n%x;
+    if(temp<y) cout<<n-(temp+x-y)<<endl;
+    else cout<<n-(temp-y)<<endl;
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
