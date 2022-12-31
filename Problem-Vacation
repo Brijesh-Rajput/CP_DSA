@@ -1,0 +1,44 @@
+//https://www.codechef.com/ZCOPRAC/problems/ZCO22001
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    //Total TC=O(n*m+q)
+    int n,m; cin>>n>>m;
+    vector<vector<int>> vec(n+1,vector<int>(m+1,0)); //1 based indexing 
+    for(int i=1; i<=n; i++)
+        for(int j=1; j<=m; j++)
+            cin>>vec[i][j];
+
+    //TC=O(n*m)
+    //2-d prefix sum 
+    for(int i=1; i<=n; i++)
+        for(int j=1; j<=m; j++)
+            vec[i][j]+=vec[i-1][j] + vec[i][j-1] - vec[i-1][j-1];
+
+    //TC=O(q)
+    int q; cin>>q;
+    while(q--){
+        int a,b,c,d; cin>>a>>b>>c>>d;
+        if((d-b+1)*(c-a+1) == vec[c][d]-vec[a-1][d]-vec[c][b-1]+vec[a-1][b-1]) cout<<"1"<<endl;  
+        else cout<<"0"<<endl;
+    }
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
