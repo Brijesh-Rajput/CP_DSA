@@ -1,0 +1,36 @@
+//https://codeforces.com/problemset/problem/1774/A
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    int n; cin>>n;
+    string s; cin>>s;
+    string sign; int is_first=0;
+    if(s[0]=='1') is_first=1;
+
+    for(int i=1; i<n; i++){
+        if(s[i]=='0') sign.push_back('+');
+        else if(is_first and s[i]=='1'){ sign.push_back('-'); is_first=0; }
+        else if(is_first==0 and s[i]=='1'){ sign.push_back('+'); is_first=1; }
+        // cout<<i<<" ";
+    }
+    cout<<sign<<endl;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
