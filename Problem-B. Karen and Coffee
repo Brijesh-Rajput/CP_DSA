@@ -1,0 +1,45 @@
+//https://codeforces.com/problemset/problem/816/B
+#include<bits/stdc++.h>
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+void solve(){
+    //TC=O(2*n+q)  SC=O(n)
+    int n,k,q; cin>>n>>k>>q;
+    vector<int> no_recipe_temp(2*1e5+1); //1 based indexing 
+    vector<int> no_of_admissable_temp(2*1e5+1);
+    while(n--){
+        int a,b; cin>>a>>b;
+        no_recipe_temp[a]+=1;
+        no_recipe_temp[b+1]-=1;
+    }
+    for(int i=1; i<=2*1e5+1; i++){ //How to do more efficient that, loop or array size will be max_value_temp-min_value_temp
+       //1-d prefix sum
+        no_recipe_temp[i]+=no_recipe_temp[i-1];
+        if(no_recipe_temp[i]>=k) no_of_admissable_temp[i]++; //no_of_admissable_temp[i]=1;
+    }
+    for(int i=1; i<=2*1e5+1; i++)
+        no_of_admissable_temp[i]+=no_of_admissable_temp[i-1];
+    while(q--){
+        int a,b; cin>>a>>b;
+        cout<<no_of_admissable_temp[b] - no_of_admissable_temp[a-1]<<endl;
+    }
+
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
