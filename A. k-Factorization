@@ -1,0 +1,53 @@
+//https://codeforces.com/contest/797/problem/A
+#include<bits/stdc++.h>
+#define endl '\n'
+#define mod (int)(1e9+7)  //const int MOD = 1e9+7;
+#define pb push_back
+#define ll long long int
+#define l long int
+#define all(x) x.begin(),x.end()
+using namespace std;
+
+vector<int> factors;
+
+bool factorization(int n,int k){
+    //TC=O(sq.root(n))  and Omega(logn base 2)
+    int count=0;
+    for(int i=2; i*i<=n; i++){ //==========> i*i<=n
+        while(n%i==0){
+            count++;
+            factors.pb(i);
+            n/=i; //NOTE:- I'm changing the value of n 
+            if(count+1==k && n!=1){ factors.pb(n); return true; }
+        }
+        if(n==1) break;
+    }
+	if(n!=1){ factors.pb(n); count++; } //if(n>1)
+    if(count==k) return true;
+    return false;
+}
+
+
+void solve(){
+    int n,k; cin>>n>>k;
+    if(k==1) { cout<<n; return; }
+    if(!factorization(n,k)){ cout<<"-1"; return; }
+    for(auto x: factors) cout<<x<<" ";
+    // cout<<endl;
+}
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin); 
+    freopen("Output.txt","w",stdout);
+#endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1;
+    // cin>>testcases;
+    while(testcases--){
+        solve();
+    }
+
+}
