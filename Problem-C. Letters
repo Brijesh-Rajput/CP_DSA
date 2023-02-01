@@ -1,0 +1,105 @@
+//https://codeforces.com/problemset/problem/978/C
+#include<bits/stdc++.h>
+#define l long int 
+#define ll long long int
+#define endl '\n'
+#define all(x) x.begin(),x.end()
+#define pb push_back
+#define mod (int)(1e9+7)
+#define N "NO"
+#define Y "YES"
+using namespace std;
+/*------------------------------------------------------------------------------------*/
+/*------------------------------ Standard Algo ---------------------------------------*/
+/*------------------------------------------------------------------------------------*/
+
+//------> Prime Factorization 
+vector<int> prime_factors_array;
+// set<int> prime_factors_array; //for distinct prime factors 
+void prime_factorization(int n){  //TC=Omega(logn)  TC=O(sqrt(n))  SC=O(logn) 
+    for(int i=2; i*i<=n; i++){   //Q. why i*i<=n ?  Proof this mathematically 
+        while(!(n%i)){
+            prime_factors_array.pb(i);
+            n/=i;
+        }
+        if(n==1) break;
+    }
+    //if(n>1)
+    if(n!=1) prime_factors_array.pb(n);
+}
+
+//------> Prime Numbers 
+bool is_prime(int n){ //TC=O(sqrt(n))
+    for(int i=2; i*i<=n; i++)
+        if(!(n%i)) return false;
+    return n>1; //if(n<=1) return false;
+}
+
+//------> Sieve of Erathosthenes 
+const int n=1e8+1;  //!-based indexing 
+bool sieve_array[n];
+
+void sieve(int n){ //TC=O(n*log(logn))  SC=O(1e8+1)=O(1)
+    //n<=1e8
+    fill(sieve_array,sieve_array+n+1,true); //if sieve[i]==true => i is prime 
+    sieve_array[0]=sieve_array[1]=false;
+    
+    for(int i=2; i*i<=n; i++) //Q. why i*i<=n ?? ==> see my notes 
+        if(sieve_array[i])
+            for(int j=i*i; j<=n; j+=i) //Q. why j=i*i ? why not j=2*i ? why j+=i ? ==> see my notes  
+                sieve_array[j]=false;
+
+}
+
+//------> Modular Power and Binary exponentiation
+
+/*------------------------------------------------------------------------------------*/
+/*------------------------------ THE END ---------------------------------------------*/
+/*------------------------------------------------------------------------------------*/
+void solve(){
+	int n,m; cin>>n>>m;
+	vector<ll> a(n);
+	for(auto &x: a) cin>>x;
+
+	vector<ll> b(m);
+	for(auto &x: b) cin>>x;  //NOTE:- all are in increasing order. Therefore, jth pointer which will move on prefix sum will move in one direction which is forward direction.
+
+	//prefix sum of array a ---> TC=O(n)
+	for(int i=1; i<n; i++)  
+		a[i]+=a[i-1];
+	
+	int i=0, j=0;
+	while(i<m){
+        //TC=O(n+m)
+		if(b[i]<=a[j]){
+			if(j==0) cout<<j+1<<" "<<b[i]<<endl;
+			else cout<<j+1<<" "<<b[i]-a[j-1]<<endl;
+			i++;
+		}
+		else j++;
+
+	}
+
+    // cout<<endl;
+}
+
+int main(){
+
+    // #ifndef ONLINE_JUDGE
+    //     freopen("Input.txt","r",stdin);
+    //     freopen("Output.txt","w",stdout);
+    // #endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1; 
+    // cin>>testcases;
+
+    //sieve((int)(1e8));
+    //cout<<"Hello"<<N;
+
+    while(testcases--){
+        solve();
+    }
+
+}
