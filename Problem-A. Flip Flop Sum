@@ -1,0 +1,135 @@
+//https://codeforces.com/contest/1778/problem/A
+
+#include <algorithm>
+#include<bits/stdc++.h>
+#define l long int 
+#define ll long long int
+#define endl '\n'
+#define all(x) x.begin(),x.end()
+#define pb push_back
+#define mod (int)(1e9+7)
+#define printNO cout<<"NO";
+#define printYES cout<<"YES";
+using namespace std;
+/*------------------------------------------------------------------------------------*/
+/*------------------------------ Standard Algo ---------------------------------------*/
+/*------------------------------------------------------------------------------------*/
+
+//------> Prime Factorization 
+vector<int> prime_factors_array;
+// set<int> prime_factors_array; //for distinct prime factors 
+void prime_factorization(int n){  //TC=Omega(logn)  TC=O(sqrt(n))  SC=O(logn) 
+    for(int i=2; i*i<=n; i++){   //Q. why i*i<=n ?  Proof this mathematically 
+        while(!(n%i)){
+            prime_factors_array.pb(i);
+            n/=i;
+        }
+        if(n==1) break;
+    }
+    //if(n>1)
+    if(n!=1) prime_factors_array.pb(n);
+}
+
+//------> Prime Numbers 
+bool is_prime(int n){ //TC=O(sqrt(n))
+    for(int i=2; i*i<=n; i++)
+        if(!(n%i)) return false;
+    return n>1; //if(n<=1) return false;
+}
+
+//------> Sieve of Erathosthenes 
+const int array_size=1e8+1;  //!-based indexing 
+bool sieve_array[array_size];
+
+void sieve(int n){ //TC=O(n*log(logn))  SC=O(1e8+1)=O(1)
+    //n<=1e8
+    fill(sieve_array,sieve_array+n+1,true); //if sieve[i]==true => i is prime 
+    sieve_array[0]=sieve_array[1]=false;
+    
+    for(int i=2; i*i<=n; i++) //Q. why i*i<=n ?? ==> see my notes 
+        if(sieve_array[i])
+            for(int j=i*i; j<=n; j+=i) //Q. why j=i*i ? why not j=2*i ? why j+=i ? ==> see my notes  
+                sieve_array[j]=false;
+
+}
+
+//------> Modular Power and Binary exponentiation
+long long binpow(long long a, long long b, long long m) {
+    a %= m;
+    long long res = 1;
+    while (b > 0) {
+        if (b & 1)
+            res = res * a % m;
+        a = a * a % m;
+        b >>= 1;
+    }
+    return res;
+}
+//Do operator overloading for string input and vector input and as well as vector output.
+//for both 1-based indexing vector and string input and 0-based indexing vector input.
+/*------------------------------------------------------------------------------------*/
+/*------------------------------ THE END ---------------------------------------------*/
+/*------------------------------------------------------------------------------------*/
+void solve(){
+    //similar to these problem 
+    //same logic is apply 
+    //https://codeforces.com/contest/1791/problem/E
+
+	int n; cin>>n;
+	vector<int> vec(n+1);
+	for(int i=1; i<=n; i++)
+		cin>>vec[i];
+
+	int is_minus1=0, is_minus2=0;
+
+	/*
+	is_minus1=0 && is_minus2=0 --> means there is no -1 in an array 
+	is_minus1=1 && is_minus2=0 --> means there is -1 but no two adjacent element have -1 
+	is_minus1=1 && is_minus2=1 --> means there is atleast 1(two adjacent has -1)
+	*/
+
+	int sum=0;
+	//prefix sum
+	for(int i=1; i<=n; i++)
+		sum+=vec[i];
+
+	int i;
+	for(i=1; i<n; i++){
+		if(vec[i]==-1 && vec[i+1]!=-1){ is_minus1=1; }
+		else if(vec[i]==-1 && vec[i+1]==-1){ is_minus1=1; is_minus2=1; break; } 
+	}
+	if(i<n && is_minus1==1 && is_minus2==1){
+		cout<<sum+4<<endl; return;
+	}
+	else if(is_minus1==0 && i==n && vec[i]==1){
+        // cout<<"Hello hdbh";
+		cout<<sum-4<<endl; return;
+	}
+	else if(is_minus1==0 && i==n && vec[i]==-1){
+		is_minus1=1;
+	}
+	cout<<sum<<endl; return;
+
+}
+
+int main(){
+
+    // #ifndef ONLINE_JUDGE
+    //     freopen("Input.txt","r",stdin);
+    //     freopen("Output.txt","w",stdout);
+    // #endif
+
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+    ll testcases=1; 
+    cin>>testcases;
+
+    //TC=O(nloglogn)
+    // sieve((int)(1e6)); 
+    //cout<<"Hello"<<N;
+
+    while(testcases--){
+        solve();
+    }
+
+}
